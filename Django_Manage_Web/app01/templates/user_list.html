@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+    <h1>{{ name }}列表</h1>
+    <!--如果是列表，通过.索引来获取-->
+    <text>{{ r.0 }}</text>
+    <text>{{ r.1 }}</text>
+    <text>{{ r.2 }}</text>
+    <!--for循环取值-->
+    {% for i in r %}
+        <span>{{ i }}</span>
+    {% endfor %}
+    <!--if条件判断-->
+    {% if name == '老师' %}
+        <span>老师好</span>
+    {% else %}
+        <span>这是学生表</span>
+    {% endif %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.js' %}"></script>
+</body>
+</html>

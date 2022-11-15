@@ -21,4 +21,8 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     # 网址输入www.com/admin --> 找views里面index函数
     path('admin/', views.index),
+    path('admin/user',views.user_list),
+    path('admin/data',views.connect_data),
+    path('login/', views.login),
+    path('orm/',views.orm)
 ]
