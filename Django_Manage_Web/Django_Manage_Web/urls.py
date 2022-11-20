@@ -15,14 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app01 import views
+from app02 import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     # 网址输入www.com/admin --> 找views里面index函数
-    path('admin/', views.index),
-    path('admin/user',views.user_list),
-    path('admin/data',views.connect_data),
-    path('login/', views.login),
-    path('orm/',views.orm)
+    # path('admin/', views.index),
+    # path('admin/user',views.user_list),
+    # path('admin/data',views.connect_data),
+    # path('login/', views.login),
+    # path('orm/',views.orm)
+    # ---------------------------------------------
+    path('depart/list',views.depart_list),
+    path('depart/add',views.depart_add),
+    path('depart/delete',views.depart_del),
+    path('depart/update',views.depart_update), # 弹窗模式的编辑
+    path('depart/<int:nid>/edit',views.depart_edit),
+    path('layout',views.layout)
 ]
+
+
