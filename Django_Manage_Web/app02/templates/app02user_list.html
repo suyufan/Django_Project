@@ -1,11 +1,13 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-<div>
+
+    <div>
     <div class="container">
         <!--按钮区域-->
         <div style="margin-bottom: 10px">
             <!--a标签加上target="_blank" 表示在新的标签页面打开-->
-            <a class="btn btn-success" href="/depart/add" target="_blank"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="margin-right: 5px"></span>新建部门</a>
+            <a class="btn btn-success" href="/user/model_add" target="_blank"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="margin-right: 5px"></span>新增用户</a>
         </div>
 
         <!--改写原 添加部门  变为 点击弹窗 进行新增-->
@@ -81,27 +83,40 @@
         <!--面板区域-->
         <div class="panel panel-default">
           <!-- Default panel contents -->
-          <div class="panel-heading"><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-right: 5px"></span>部门列表</div>
+          <div class="panel-heading"><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-right: 5px"></span>用户列表</div>
 
           <!-- Table -->
           <table class="table table-bordered">
             <thead>
               <tr>
                 <th>ID</th>
-                <th>名称</th>
-                <th>操作</th>
+                <th>姓名</th>
+                <th>密码</th>
+                  <th>年龄</th>
+                  <th>账户余额</th>
+                <th>入职时间</th>
+                <th>性别</th>
+                  <th>所在部门</th>
+                  <th>操作</th>
               </tr>
             </thead>
             <tbody>
             {% for obj in data_list %}
               <tr>
                 <th scope="row">{{ obj.id }}</th>
-                <td>{{ obj.title }}</td>
+                <td>{{ obj.name }}</td>
+                  <td>{{ obj.password }}</td>
+                  <td>{{ obj.age }}</td>
+                  <td>{{ obj.account }}</td>
+                  <td>{{ obj.create_time|date:'Y-m-d' }}</td>
+                  <td>{{ obj.get_gender_display }}</td>
+                  <td>{{ obj.depart.title }}</td>
+
                 <td>
                     <!--弹窗模式的编辑 depart_update-->
 {#                    <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal2" href="/depart/update/{{ obj.id }}">编辑</a>#}
-                    <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit">编辑</a>
-                    <a class="btn btn-danger btn-xs" href="/depart/delete?id={{ obj.id }}">删除</a>
+                    <a class="btn btn-primary btn-xs" href="/user/{{ obj.id }}/edit">编辑</a>
+                    <a class="btn btn-danger btn-xs" href="/user/user?id={{ obj.id }}">删除</a>
                 </td>
               </tr>
             {% endfor %}
@@ -110,4 +125,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

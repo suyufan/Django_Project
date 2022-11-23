@@ -25,13 +25,20 @@ urlpatterns = [
     # path('admin/data',views.connect_data),
     # path('login/', views.login),
     # path('orm/',views.orm)
-    # ---------------------------------------------
+    # ---------------------- 部门管理 -----------------------
     path('depart/list',views.depart_list),
     path('depart/add',views.depart_add),
     path('depart/delete',views.depart_del),
     path('depart/update',views.depart_update), # 弹窗模式的编辑
     path('depart/<int:nid>/edit',views.depart_edit),
-    path('layout',views.layout)
+    path('layout',views.layout),
+
+    # -------------------- 用户管理 -----------------------
+    path('user/list',views.user_list),
+    path('user/add',views.user_add), # 原始方法
+    path('user/model_add',views.user_model_add),
+    path('user/<int:nid>/edit',views.user_edit),
+    path('user/delete',views.user_delete)
 ]
 
 
