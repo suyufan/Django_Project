@@ -1,113 +1,42 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-<div>
     <div class="container">
-        <!--按钮区域-->
         <div style="margin-bottom: 10px">
-            <!--a标签加上target="_blank" 表示在新的标签页面打开-->
-            <a class="btn btn-success" href="/depart/add" target="_blank"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="margin-right: 5px"></span>新建部门</a>
+            <a class="btn btn-success" href="/depart/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新建部门
+            </a>
         </div>
-
-        <!--改写原 添加部门  变为 点击弹窗 进行新增-->
-        <!--添加部门 弹窗-->
-        <div class="modal fade" id="modal1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">添加部门</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form action="#">
-                            <div class="form-group">
-                                <label for="username" class="col-form-label">部门名：</label>
-                                <input type="text" class="form-control" id="title">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                        <button class="btn btn-primary">保存</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--编辑 弹窗-->
-        <div class="modal fade" id="modal2">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">编辑部门信息</h3>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="/depart/update">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label>部门名：</label>
-                                <input type="text" class="form-control" name="title">
-                            </div>
-                            <div style="text-align: center">
-                                <button type="submit" class="btn btn-primary" style="margin-right: 15px">提交</button>
-                                <button class="btn btn-secondary center" data-dismiss="modal">关闭</button>
-                            </div>
-                        </form>
-                    </div>
-{#                    <div class="modal-footer">#}
-{#                        <button class="btn btn-secondary" data-dismiss="modal">关闭</button>#}
-{#                        <button class="btn btn-primary" type="submit">保存</button>#}
-{#                    </div>#}
-                </div>
-            </div>
-        </div>
-        <!--删除 弹窗-->
-        <div class="modal fade" id="modal3">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">删除部门信息</h3>
-                    </div>
-                    <div class="modal-body">
-                        <span>删除后无法恢复，确认删除吗？</span>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal">取消</button>
-                        <button class="btn btn-primary">确认</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-{#        <button class="btn btn-success" data-toggle="modal" data-target="#modal1" data-whatever="add" style="margin-bottom: 10px"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="margin-right: 5px"></span>添加部门</button>#}
-
-        <!--面板区域-->
         <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading"><span class="glyphicon glyphicon-th-list" aria-hidden="true" style="margin-right: 5px"></span>部门列表</div>
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+                部门列表
+            </div>
 
-          <!-- Table -->
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>名称</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-            {% for obj in data_list %}
-              <tr>
-                <th scope="row">{{ obj.id }}</th>
-                <td>{{ obj.title }}</td>
-                <td>
-                    <!--弹窗模式的编辑 depart_update-->
-{#                    <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modal2" href="/depart/update/{{ obj.id }}">编辑</a>#}
-                    <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit">编辑</a>
-                    <a class="btn btn-danger btn-xs" href="/depart/delete?id={{ obj.id }}">删除</a>
-                </td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table>
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>名称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for obj in queryset %}
+                    <tr>
+                        <th>{{ obj.id }}</th>
+                        <td>{{ obj.title }}</td>
+                        <td>
+                            <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit/">编辑</a>
+                            <a class="btn btn-danger btn-xs" href="/depart/delete/?nid={{ obj.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
 {% endblock %}

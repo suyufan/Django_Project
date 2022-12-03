@@ -1,4 +1,4 @@
-"""Django_Manage_Web URL Configuration
+"""day16 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -15,30 +15,45 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app02 import views
+
+from app02.views import depart, user, pretty, admin, account,task
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    # 网址输入www.com/admin --> 找views里面index函数
-    # path('admin/', views.index),
-    # path('admin/user',views.user_list),
-    # path('admin/data',views.connect_data),
-    # path('login/', views.login),
-    # path('orm/',views.orm)
-    # ---------------------- 部门管理 -----------------------
-    path('depart/list',views.depart_list),
-    path('depart/add',views.depart_add),
-    path('depart/delete',views.depart_del),
-    path('depart/update',views.depart_update), # 弹窗模式的编辑
-    path('depart/<int:nid>/edit',views.depart_edit),
-    path('layout',views.layout),
 
-    # -------------------- 用户管理 -----------------------
-    path('user/list',views.user_list),
-    path('user/add',views.user_add), # 原始方法
-    path('user/model_add',views.user_model_add),
-    path('user/<int:nid>/edit',views.user_edit),
-    path('user/delete',views.user_delete)
+    # 部门管理
+    path('depart/list/', depart.depart_list),
+    path('depart/add/', depart.depart_add),
+    path('depart/delete/', depart.depart_delete),
+    path('depart/<int:nid>/edit/', depart.depart_edit),
+
+    # 用户管理
+    path('user/list/', user.user_list),
+    path('user/add/', user.user_add),
+    path('user/model/form/add/', user.user_model_form_add),
+    path('user/<int:nid>/edit/', user.user_edit),
+    path('user/<int:nid>/delete/', user.user_delete),
+
+    # 靓号管理
+    path('pretty/list/', pretty.pretty_list),
+    path('pretty/add/', pretty.pretty_add),
+    path('pretty/<int:nid>/edit/', pretty.pretty_edit),
+    path('pretty/<int:nid>/delete/', pretty.pretty_delete),
+
+    # 管理员的管理
+    path('admin/list/', admin.admin_list),
+    path('admin/add/', admin.admin_add),
+    path('admin/<int:nid>/edit/', admin.admin_edit),
+    path('admin/<int:nid>/delete/', admin.admin_delete),
+    path('admin/<int:nid>/reset/', admin.admin_reset),
+
+    # 登录
+    path('login/', account.login),
+    path('logout/', account.logout),
+    path('image/code/', account.image_code),
+
+    # 任务管理
+    path('task/list/', task.task_list),
+    path('task/ajax/', task.task_ajax),
+    path('task/add/', task.task_add),
 ]
-
-
