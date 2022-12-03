@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from app02.views import depart, user, pretty, admin, account,task, order, chart, upload
+from app02.views import depart, user, pretty, admin, account,task, order, chart, upload, city
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
@@ -75,4 +75,8 @@ urlpatterns = [
     path('upload/list/', upload.upload_list),
     path('upload/form/', upload.upload_form),
     path('upload/modal/form/', upload.upload_modal_form),
+    
+    # 城市列表
+    path('city/list/', city.city_list),
+    path('city/add/', city.city_add),
 ]
