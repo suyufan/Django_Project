@@ -38,6 +38,7 @@ def login(request):
         return render(request, 'login.html', {'form': form})
 
     form = LoginForm(data=request.POST)
+    print("-------------form-----------:",form)
     if form.is_valid():
         # 验证成功，获取到的用户名和密码
         # {'username': 'wupeiqi', 'password': '123',"code":123}

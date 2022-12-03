@@ -47,3 +47,5 @@ def task_add(request):
 
     data_dict = {"status": False, 'error': form.errors}
     return HttpResponse(json.dumps(data_dict, ensure_ascii=False))
+
+    # return JsonResponse(data_dict)
