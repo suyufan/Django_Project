@@ -2,7 +2,7 @@ import json
 from django import forms
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt # 免除csrf_token验证 加上之后 可以通过Ajax发送post请求 不会403禁止访问
 
 from app02 import models
 from app02.utils.bootstrap import BootStrapModelForm
@@ -24,7 +24,7 @@ def task_list(request):
     return render(request, "task_list.html", {"form": form})
 
 
-@csrf_exempt
+@csrf_exempt # post请求免除校验
 def task_ajax(request):
     print(request.GET)
     print(request.POST)

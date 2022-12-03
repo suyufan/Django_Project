@@ -74,7 +74,7 @@ def image_code(request):
 
     # 调用pillow函数，生成图片
     img, code_string = check_code()
-    print(f"code_string: {code_string}")
+    print(f"code_string-----------------------: {code_string}")
     # 写入到自己的session中（以便于后续获取验证码再进行校验）
     request.session['image_code'] = code_string
     # 给Session设置60s超时
