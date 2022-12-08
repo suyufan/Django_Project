@@ -1,7 +1,7 @@
 import os
 from django.conf import settings
 from django.shortcuts import render, HttpResponse
-from app01 import models
+from app02 import models
 
 
 def upload_list(request):
@@ -25,7 +25,7 @@ def upload_list(request):
 
 
 from django import forms
-from app01.utils.bootstrap import BootStrapForm, BootStrapModelForm
+from app02.utils.bootstrap import BootStrapForm, BootStrapModelForm
 
 
 class UpForm(BootStrapForm):
@@ -66,7 +66,7 @@ def upload_form(request):
 
 
 from django import forms
-from app01.utils.bootstrap import BootStrapModelForm
+from app02.utils.bootstrap import BootStrapModelForm
 
 
 class UpModelForm(BootStrapModelForm):

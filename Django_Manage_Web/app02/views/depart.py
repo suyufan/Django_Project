@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from app02 import models
 
 from app02.utils.pagination import Pagination
@@ -59,3 +59,8 @@ def depart_edit(request, nid):
     # 重定向回部门列表
     return redirect("/depart/list/")
 
+def depart_multi(request):
+    """ 批量上传文件 """
+    file_object = request.FILES.get('exc')
+    print(file_object)
+    return HttpResponse('上传文件')

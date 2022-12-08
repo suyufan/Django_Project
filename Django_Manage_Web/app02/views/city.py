@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from app01 import models
-from app01.utils.bootstrap import BootStrapModelForm
+from app02 import models
+from app02.utils.bootstrap import BootStrapModelForm
 
 
 def city_list(request):

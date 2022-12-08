@@ -28,8 +28,8 @@ class LoginForm(BootStrapForm):
 
     def clean_password(self):
         pwd = self.cleaned_data.get("password")
-        return md5(pwd)
-
+        # return md5(pwd)
+        return pwd
 
 def login(request):
     """ 登录 """
@@ -38,7 +38,6 @@ def login(request):
         return render(request, 'login.html', {'form': form})
 
     form = LoginForm(data=request.POST)
-    print("-------------form-----------:",form)
     if form.is_valid():
         # 验证成功，获取到的用户名和密码
         # {'username': 'wupeiqi', 'password': '123',"code":123}
@@ -53,6 +52,7 @@ def login(request):
 
         # 去数据库校验用户名和密码是否正确，获取用户对象、None
         # admin_object = models.Admin.objects.filter(username=xxx, password=xxx).first()
+        print(f'form.cleaned_data: {form.cleaned_data}')
         admin_object = models.Admin.objects.filter(**form.cleaned_data).first()
         if not admin_object:
             form.add_error("password", "用户名或密码错误")
